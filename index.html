@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Desafio In Tennis dos 10 segundos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #000000;
+      color: white;
+      text-align: center;
+      padding-top: 80px;
+    }
+
+    h1 {
+      color: #ff8c00;
+    }
+
+    #tempo {
+      font-size: 60px;
+      margin: 30px 0;
+    }
+
+    button {
+      font-size: 22px;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 10px;
+      background: #ff8c00;
+      color: white;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    button:hover {
+      background: #e67e00;
+    }
+
+    #mensagem {
+      font-size: 26px;
+      margin-top: 30px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Desafio dos 10 segundos</h1>
+  <p>Aperte o botão quando chegar em 10 segundos!</p>
+
+  <div id="tempo">0.00</div>
+
+  <button onclick="iniciarJogo()">Iniciar</button>
+  <button onclick="pararTempo()">Apertar</button>
+
+  <div id="mensagem"></div>
+
+  <script>
+    let tempo = 0;
+    let intervalo;
+    let rodando = false;
+
+    function iniciarJogo() {
+      tempo = 0;
+      rodando = true;
+      document.getElementById("mensagem").innerText = "";
+      document.getElementById("tempo").innerText = "0.00";
+
+      clearInterval(intervalo);
+
+      intervalo = setInterval(() => {
+        tempo += 0.01;
+        document.getElementById("tempo").innerText = tempo.toFixed(2);
+      }, 10);
+    }
+
+    function pararTempo() {
+      if (!rodando) return;
+
+      clearInterval(intervalo);
+      rodando = false;
+
+      let mensagem = document.getElementById("mensagem");
+
+      if (tempo >= 10.00 && tempo <= 10.00) {
+        mensagem.innerText = "Parabéns! Você acertou!";
+        mensagem.style.color = "#00ff88";
+      } else {
+        mensagem.innerText = "Não foi dessa vez!";
+        mensagem.style.color = "#ff4444";
+      }
+    }
+  </script>
+
+</body>
+</html>
